@@ -12,6 +12,7 @@ class IsOwner(permissions.BasePermission):
 class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwner]
+    queryset = Habit.objects.all()
 
     def get_queryset(self):
         return Habit.objects.filter(user=self.request.user)
