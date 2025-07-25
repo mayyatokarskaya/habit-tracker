@@ -1,0 +1,146 @@
+[
+    {
+        "model": "habits.habit",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "place": "дом",
+            "time": "07:30:00",
+            "action": "пить воду",
+            "is_pleasant": true,
+            "related_habit": null,
+            "frequency": 1,
+            "reward": null,
+            "duration": 60,
+            "is_public": true
+        }
+    },
+    {
+        "model": "habits.habit",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "place": "спортзал",
+            "time": "18:00:00",
+            "action": "тренировка 30 минут",
+            "is_pleasant": false,
+            "related_habit": 1,
+            "frequency": 2,
+            "reward": null,
+            "duration": 120,
+            "is_public": false
+        }
+    },
+    {
+        "model": "habits.habit",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "place": "офис",
+            "time": "13:00:00",
+            "action": "медитация 5 минут",
+            "is_pleasant": true,
+            "related_habit": null,
+            "frequency": 1,
+            "reward": null,
+            "duration": 30,
+            "is_public": true
+        }
+    },
+    {
+        "model": "habits.habit",
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "place": "дом",
+            "time": "21:00:00",
+            "action": "планирование следующего дня",
+            "is_pleasant": false,
+            "related_habit": null,
+            "frequency": 1,
+            "reward": "чашка чая",
+            "duration": 60,
+            "is_public": false
+        }
+    },
+  {
+    "model": "habits.habit",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "place": "дом",
+      "time": "08:00:00",
+      "action": "утренний кофе",
+      "is_pleasant": true,
+      "related_habit": null,
+      "frequency": 1,
+      "reward": null,
+      "duration": 60,
+      "is_public": true
+    }
+  },
+  {
+    "model": "habits.habit",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "place": "парк",
+      "time": "07:00:00",
+      "action": "пробежка",
+      "is_pleasant": false,
+      "related_habit": null,
+      "frequency": 1,
+      "reward": "пить протеиновый коктейль",
+      "duration": 30,
+      "is_public": true
+    }
+  },
+  {
+    "model": "habits.habit",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "place": "офис",
+      "time": "13:00:00",
+      "action": "медитация 5 минут",
+      "is_pleasant": true,
+      "related_habit": null,
+      "frequency": 5,
+      "reward": null,
+      "duration": 5,
+      "is_public": false
+    }
+  },
+  {
+    "model": "habits.habit",
+    "pk": 8,
+    "fields": {
+      "user": 3,
+      "place": "дом",
+      "time": "22:00:00",
+      "action": "чтение книги перед сном",
+      "is_pleasant": true,
+      "related_habit": null,
+      "frequency": 1,
+      "reward": "покупка новой книги",
+      "duration": 20,
+      "is_public": true
+    }
+  },
+  {
+    "model": "habits.habit",
+    "pk": 9,
+    "fields": {
+      "user": 3,
+      "place": "кухня",
+      "time": "19:00:00",
+      "action": "приготовление ужина",
+      "is_pleasant": false,
+      "related_habit": null,
+      "frequency": 7,
+      "reward": null,
+      "duration": 45,
+      "is_public": false
+    }
+  }
+]
