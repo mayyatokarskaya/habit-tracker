@@ -13,7 +13,9 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('habit_list')
+        return redirect('login')
+
+
 
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'
