@@ -7,5 +7,6 @@ router.register(r"habits", HabitViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
-    path('habits/', HabitListView.as_view(), name='habit_list'),
+    path('habits/html/', HabitListView.as_view(), name='habit_list'),
+
 ]
