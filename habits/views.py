@@ -5,6 +5,8 @@ from .serializers import HabitSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from django.views.generic import ListView
+
 
 class IsOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -40,3 +42,13 @@ class PublicHabitViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = HabitSerializer
     permission_classes = [permissions.AllowAny]
+
+
+class HabitListView(ListView):
+    model = Habit
+    template_name = 'habits/habit_list.html'
+    context_object_name = 'page_obj'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Habit.objects.filter(user=self.request.user)
