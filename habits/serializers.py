@@ -3,12 +3,35 @@ from .models import Habit
 
 
 class HabitSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели Habit.
+
+    Позволяет конвертировать объекты Habit в JSON и обратно.
+    Включает валидацию, чтобы проверить бизнес-правила модели:
+    - Нельзя одновременно указывать награду и связанную привычку.
+    - Время выполнения не должно превышать 120 секунд.
+    - В связанную привычку можно указывать только приятные привычки.
+    - Приятная привычка не может иметь ни награду, ни связанную привычку.
+    - Частота выполнения должна быть от 1 до 7 дней.
+    """
+
     class Meta:
         model = Habit
         fields = "__all__"
 
     def validate(self, data):
-        # дублируем логику из модели
+        """
+        Проверяет данные на соответствие бизнес-логике модели Habit.
+
+        Args:
+            data (dict): Данные для валидации.
+
+        Raises:
+            serializers.ValidationError: При нарушении правил валидации.
+
+        Returns:
+            dict: Валидированные данные.
+        """
         reward = data.get("reward")
         related_habit = data.get("related_habit")
         is_pleasant = data.get("is_pleasant")
