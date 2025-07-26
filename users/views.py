@@ -14,6 +14,7 @@ class RegisterView(CreateView):
     После успешной регистрации выполняет автоматический вход пользователя
     и перенаправляет на страницу логина.
     """
+
     form_class = CustomUserCreationForm
     template_name = "users/register.html"
     success_url = reverse_lazy("login")
@@ -35,6 +36,7 @@ class CustomLoginView(LoginView):
 
     Использует шаблон users/login.html.
     """
+
     template_name = "users/login.html"
 
 
@@ -44,4 +46,5 @@ class CustomLogoutView(LogoutView):
 
     После выхода перенаправляет на страницу логина.
     """
+
     next_page = reverse_lazy("login")

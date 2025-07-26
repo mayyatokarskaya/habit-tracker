@@ -63,7 +63,7 @@ class HabitViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"], permission_classes=[permissions.AllowAny])
     def public(self, request):
         """Возвращает список всех публичных привычек.
-            Доступно без авторизации
+        Доступно без авторизации
         """
         habits = Habit.objects.filter(is_public=True)
         serializer = self.get_serializer(habits, many=True)
@@ -77,6 +77,7 @@ class PublicHabitViewSet(viewsets.ReadOnlyModelViewSet):
     Позволяет только просматривать (list, retrieve) привычки,
     которые опубликованы пользователями.
     """
+
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = HabitSerializer
     permission_classes = [permissions.AllowAny]
@@ -88,9 +89,10 @@ class HabitListView(ListView):
     со списком привычек текущего пользователя с пагинацией.
     Использует шаблон habits/habit_list.html.
     """
+
     model = Habit
-    template_name = 'habits/habit_list.html'
-    context_object_name = 'page_obj'
+    template_name = "habits/habit_list.html"
+    context_object_name = "page_obj"
     paginate_by = 5
 
     def get_queryset(self):

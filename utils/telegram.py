@@ -14,11 +14,7 @@ def send_telegram_message(text: str):
         print("⚠️ Telegram token or chat ID not configured.")
         return
 
-    payload = {
-        "chat_id": CHAT_ID,
-        "text": text,
-        "parse_mode": "HTML"
-    }
+    payload = {"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
     try:
         response = requests.post(TELEGRAM_API_URL, data=payload)
         response.raise_for_status()
