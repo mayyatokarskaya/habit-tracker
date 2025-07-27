@@ -1,4 +1,6 @@
 import os
+import sys
+
 from dotenv import load_dotenv
 
 from pathlib import Path
@@ -28,6 +30,7 @@ INSTALLED_APPS = [
     "users",
     "django_celery_beat",
     "drf_yasg",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,16 @@ DATABASES = {
         "PORT": os.getenv("PORT"),
     }
 }
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
+
+    PASSWORD_HASHERS = [
+        'django.contrib.auth.hashers.MD5PasswordHasher',
+    ]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

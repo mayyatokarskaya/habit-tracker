@@ -15,6 +15,10 @@ class HabitSerializer(serializers.ModelSerializer):
     - Частота выполнения должна быть от 1 до 7 дней.
     """
 
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
     class Meta:
         model = Habit
         fields = "__all__"
@@ -42,7 +46,7 @@ class HabitSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "Укажите либо награду, либо связанную привычку, но не оба."
             )
-        if duration > 120:
+        if duration is not None and duration > 120:
             raise serializers.ValidationError(
                 "Время выполнения не может превышать 120 секунд."
             )
@@ -54,7 +58,7 @@ class HabitSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 "Приятная привычка не может иметь награду или связанную привычку."
             )
-        if frequency < 1 or frequency > 7:
+        if frequency is not None and (frequency < 1 or frequency > 7):
             raise serializers.ValidationError(
                 "Частота привычки должна быть от 1 до 7 дней."
             )
