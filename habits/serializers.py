@@ -15,9 +15,7 @@ class HabitSerializer(serializers.ModelSerializer):
     - Частота выполнения должна быть от 1 до 7 дней.
     """
 
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Habit

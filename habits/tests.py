@@ -1,24 +1,25 @@
-import os
 import django
+import os
 from datetime import time
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth import get_user_model
 
-# Настройка Django окружения
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-django.setup()
-
 from habits.models import Habit
 
+# Настройка Django окружения
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+django.setup()
+
+
 User = get_user_model()
+
 
 class HabitAPITestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            email="test@example.com",
-            password="testpass123"
+            email="test@example.com", password="testpass123"
         )
         self.client.force_authenticate(user=self.user)
 
@@ -50,7 +51,7 @@ class HabitAPITestCase(APITestCase):
             "frequency": 2,
             "is_public": False,
         }
-        response = self.client.post(url, data, format='json')
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Habit.objects.count(), 2)
         self.assertEqual(Habit.objects.last().action, "New Action")
@@ -64,7 +65,7 @@ class HabitAPITestCase(APITestCase):
     def test_update_habit(self):
         url = reverse("habit-detail", kwargs={"pk": self.habit.pk})
         data = {"action": "Updated Action"}
-        response = self.client.patch(url, data, format='json')
+        response = self.client.patch(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.habit.refresh_from_db()
         self.assertEqual(self.habit.action, "Updated Action")
@@ -74,4 +75,3 @@ class HabitAPITestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Habit.objects.count(), 0)
-
