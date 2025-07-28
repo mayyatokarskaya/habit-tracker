@@ -10,13 +10,17 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
 
 def send_telegram_message(text: str):
-    if not BOT_TOKEN or not CHAT_ID:
-        print("⚠️ Telegram token or chat ID not configured.")
+    bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+
+    if not bot_token or not chat_id:
+        print("Telegram token or chat ID not configured.")
         return
 
-    payload = {"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
+    telegram_api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": text, "parse_mode": "HTML"}
     try:
-        response = requests.post(TELEGRAM_API_URL, data=payload)
+        response = requests.post(telegram_api_url, data=payload)
         response.raise_for_status()
-    except requests.RequestException as e:
+    except (requests.RequestException, Exception) as e:
         print(f"Telegram error: {e}")
