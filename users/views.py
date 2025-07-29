@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
 
 class RegisterView(CreateView):
@@ -38,6 +38,7 @@ class CustomLoginView(LoginView):
     """
 
     template_name = "users/login.html"
+    authentication_form = CustomAuthenticationForm
 
 
 class CustomLogoutView(LogoutView):

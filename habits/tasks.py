@@ -5,6 +5,9 @@ from celery import shared_task
 from .models import Habit
 from utils.telegram import send_telegram_message
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 @shared_task
 def print_hello():

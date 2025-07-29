@@ -24,3 +24,6 @@ def send_telegram_message(text: str):
         response.raise_for_status()
     except (requests.RequestException, Exception) as e:
         print(f"Telegram error: {e}")
+
+print("TELEGRAM_BOT_TOKEN:", BOT_TOKEN)
+print("CHAT_ID:", CHAT_ID)
